@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
  <head>
-    <title>WebApi demos</title>
+    <title>XRDemo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="mobile-web-app-capable" content="yes">
@@ -10,11 +10,11 @@
  </head>   
  <body>
 		<header id="main">
-			<h2 id="header">Web API Demos</h2>
+			<h2 id="header">WebXR VR Demo</h2>
+			<button id="xr-button" disabled>VR initialisation...</button>
 		</header>
-      <ul>
-         <li><a href="xrdemo.html">XR Demo</a></li>
-         <li><a href="usb-test/index.html">WebUSB demo</a></li>
-      </ul>
+        <script type="text/javascript" src="./js/ezgl.js"></script>
+        <script type="text/javascript" src="./js/ezgfx.js"></script>
+    <script type="text/javascript" type="module" src="./js/xrdemo.js"></script>
  </body>
 </html>
