@@ -100,10 +100,18 @@ function onSessionStarted(_session) { // this function defines what happens when
 
 
 
+function log(message){
+    let con = document.getElementById("console");
+    con.innerHTML=con.innerHTML+"<br/>\n"+message;
+}
+
 async function initWebXR(){
     let xr=navigator.xr;
+    log("initWebXR navigator.xr="+navigator.xr);
     let immersive = await xr.isSessionSupported('immersive-vr');
+
     console.log("immersive-vr xrSessionSupported:{}",  immersive );
+    log("immersive-vr xrSessionSupported:"+immersive);
     if(!immersive){
         let inline = await xr.isSessionSupported('inline');
         if(!inline){
