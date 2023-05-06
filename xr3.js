@@ -18,6 +18,9 @@ points.push( new THREE.Vector3( - 10, 0, 0 ) );
 points.push( new THREE.Vector3( 0, 10, 0 ) );
 points.push( new THREE.Vector3( 10, 0, 0 ) );
 
+const cube = new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1 ),  new THREE.MeshBasicMaterial( { color: 0x00ff00 } ) );
+scene.add( cube );
+
 const geometry = new THREE.BufferGeometry().setFromPoints( points );
 
 const line = new THREE.Line( geometry, material );
