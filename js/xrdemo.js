@@ -120,15 +120,16 @@ async function initWebXR(){
         }
     }
     if(immersive){
+        log("requestSession immersive-vr");
         xrSession = await navigator.xr.requestSession("immersive-vr");
         console.log("xrSession:{}",xrSession);
         log("xrSession:"+xrSession);
-        log("xrButton:"+xrButton);
         xrButton.disabled = false; // enable the button (makes it possible to click it)
         xrButton.textContent = "Enter VR"; // change text on the button
         xrButton.addEventListener("click", onButtonClicked); // add a new event to the button, which will run the onButtonClicked function
         onSessionStarted(xrSession);
     } else {
+        log("requestSession inline");
         xrSession = await navigator.xr.requestSession("inline");
         log("xrSession:"+xrSession);
         console.log("xrSession:{}",xrSession);
