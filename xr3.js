@@ -50,7 +50,7 @@ mtlLoader.load(
          const objLoader = new OBJLoader()
          objLoader.setMaterials(materials)
          objLoader.load(
-             'models/3DModel.obj',
+             'model/3DModel.obj',
              (object) => {
                  scene.add(object)
              },
