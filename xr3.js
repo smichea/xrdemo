@@ -1,8 +1,8 @@
 import { VRButton } from 'three/addons/webxr/VRButton.js';
+import * as THREE from 'three';
 
-document.body.appendChild( VRButton.createButton( renderer ) );
+const renderer = new THREE.WebGLRenderer();
 
-renderer.xr.enabled = true;
 
 const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 500 );
 camera.position.set( 0, 0, 100 );
@@ -23,6 +23,10 @@ const geometry = new THREE.BufferGeometry().setFromPoints( points );
 const line = new THREE.Line( geometry, material );
 
 scene.add( line );
+
+document.body.appendChild( VRButton.createButton( renderer ) );
+
+renderer.xr.enabled = true;
 
 renderer.setAnimationLoop( function () {
 
