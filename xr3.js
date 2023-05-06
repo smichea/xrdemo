@@ -1,7 +1,7 @@
 import { VRButton } from 'three/addons/webxr/VRButton.js';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
-import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader'
+import { OrbitControls } from 'three/addons/controls/OrbitControls'
+import { OBJLoader } from 'three/addons/loaders/OBJLoader'
+import { MTLLoader } from 'three/addons/loaders/MTLLoader'
 import * as THREE from 'three';
 
 const renderer = new THREE.WebGLRenderer();
