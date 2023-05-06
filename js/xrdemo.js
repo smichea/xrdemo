@@ -122,12 +122,15 @@ async function initWebXR(){
     if(immersive){
         xrSession = await navigator.xr.requestSession("immersive-vr");
         console.log("xrSession:{}",xrSession);
+        log("xrSession:"+xrSession);
+        log("xrButton:"+xrButton);
         xrButton.disabled = false; // enable the button (makes it possible to click it)
         xrButton.textContent = "Enter VR"; // change text on the button
         xrButton.addEventListener("click", onButtonClicked); // add a new event to the button, which will run the onButtonClicked function
         onSessionStarted(xrSession);
     } else {
         xrSession = await navigator.xr.requestSession("inline");
+        log("xrSession:"+xrSession);
         console.log("xrSession:{}",xrSession);
         xrButton.textContent = "VR not supported"; // change text on the button
         xrSession.onend=(e)=>{alert("session ended after "+Math.round(e.timeStamp/1000)+ "sec."); console.log(e)}
