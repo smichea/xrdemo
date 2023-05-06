@@ -1,4 +1,7 @@
 import { VRButton } from 'three/addons/webxr/VRButton.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
+import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader'
 import * as THREE from 'three';
 
 const renderer = new THREE.WebGLRenderer();
@@ -9,6 +12,10 @@ camera.position.set( 0, 0, 10 );
 camera.lookAt( 0, 0, 0 );
 
 const scene = new THREE.Scene();
+
+const light = new THREE.PointLight()
+light.position.set(2.5, 7.5, 15)
+scene.add(light)
 
 //create a blue LineBasicMaterial
 const material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
@@ -27,15 +34,45 @@ const line = new THREE.Line( geometry, material );
 
 scene.add( line );
 
+const controls = new OrbitControls(camera, renderer.domElement)
+controls.enableDamping = true
+
+const mtlLoader = new MTLLoader()
+mtlLoader.load(
+    'model/3DModel.mtl',
+    (materials) => {
+        materials.preload()
+        console.log(materials)
+         const objLoader = new OBJLoader()
+         objLoader.setMaterials(materials)
+         objLoader.load(
+             'models/3DModel.obj',
+             (object) => {
+                 scene.add(object)
+             },
+             (xhr) => {
+                 console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+             },
+             (error) => {
+                 console.log('An error happened')
+             }
+         )
+    },
+    (xhr) => {
+        console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+    },
+    (error) => {
+        console.log('An error happened')
+    }
+)
+
 document.body.appendChild( VRButton.createButton( renderer ) );
 
 renderer.xr.enabled = true;
 
 renderer.setAnimationLoop( function () {
-
-	renderer.render( scene, camera );
-
+    controls.update();
 	cube.rotation.x += 0.01;
 	cube.rotation.y += 0.01;
-
+	renderer.render( scene, camera );
 } );
